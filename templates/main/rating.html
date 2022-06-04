@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Рейтинг{% endblock %}
+{% block h1 %} <h1 class="main__header">Рейтинг</h1> {% endblock %}
+
+{% block menu %}
+<div class="sitebar__menu menu pt-20 bt">
+   <div class="menu__list df">
+        <a href="{% url 'home' %}" class="menu__item">Продажа</a>
+        <a href="{% url 'buy' %}" class="menu__item">Покупка</a>
+        <a href="{% url 'rating' %}" class="menu__item menu__item-active">Оценка</a>
+   </div>
+</div>
+{% endblock %}
+
+
+{% block statistics %}
+    <div class="main__middle">
+        <form action="{% url 'rating' %}" method="POST" class="main__form form">
+            {% csrf_token %}
+            <div class="ratingForm__inputs">
+                <div class="form__group">
+                    <label for="{{ form.product_type.id_for_label }}" class="form__label">Компания:</label>
+                     {{ form.title }}
+                </div>
+                <div class="form__group">
+                    <label for="{{ form.product_number.id_for_label }}" class="form__label">Оценка (от 1 до 5):</label>
+                    {{ form.mark }}
+                </div>
+            </div>
+            <button type="submit" class="form__button button clrW">Оценить</button>
+        </form>
+
+        <div></div>
+
+<!--        {% include 'main/cottonPrice.html' %}-->
+
+
+        <div class="main__best table p-20 whiteSquare">
+            <h3 class="h3 pb-20">Последнии оценки</h3>
+            <div class="table__title table-2">
+                <p class="table__text tbr tbb">Название</p>
+                <p class="table__text tbb">Рейтинг</p>
+            </div>
+            {% for r in rating_list%}
+            <div class="table__info table-2">
+                <div class="company table__text tbr tbb">
+<!--                    <div class="company__order default">1</div>-->
+        <!--            <div class="company__logo">-->
+        <!--                <img src="#" alt="{{ c.profile.title }}" class="img">-->
+        <!--            </div>-->
+                    <div class="company__name"><a href="#">{{ r.title }}</a></div>
+                </div>
+                <div class="company__score table__text tbb">{{ r.mark }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

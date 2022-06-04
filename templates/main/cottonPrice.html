@@ -1,0 +1,13 @@
+<div class="main__cotton whiteSquare p-20">
+    <h3 class="h3 pb-20">Стоимость хлопка</h3>
+    {% for c in cotton reversed%}
+    <div class="cotton__country">
+        <div class="country__img">
+            <img src="{{ c.flag.url }}" alt="uzbekistan" class="img">
+        </div>
+        <p class="country__title">{{c.title}} – <span>{{c.price}} $</span></p>
+    </div>
+    {% empty %}
+        <p>Ничего нет =(</p>
+    {% endfor %}
+</div>
