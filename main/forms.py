@@ -48,6 +48,6 @@ class RatingForm(forms.ModelForm):
         model = Rating
         fields = ['title', 'mark']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form__input input'}),
-            'mark': forms.TextInput(attrs={'class': 'form__input input', 'placeholder': 'Примечания', 'type': 'number', 'min': '0', 'max': '5'}),
+            'title': forms.TextInput(attrs={'class': 'form__input input', 'placeholder': 'Введите название компании'}),
+            'mark': forms.TextInput(attrs={'class': 'form__input input', 'type': 'number', 'min': '0', 'max': '5'}),
         }
