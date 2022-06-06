@@ -386,7 +386,7 @@ a{
 }
 .registration{
     display: grid;
-    justify-contant: center;
+    justify-content: center;
     align-items: center;
     max-width: 300px;
 }
