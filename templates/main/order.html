@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Продажа{% endblock %}
+{% block h1 %} <h1 class="main__header">Общая статистика</h1> {% endblock %}
+
+
+{% block menu %}
+    {% include 'main/menu.html' %}
+{% endblock %}
+
+
+{% block statistics %}
+<div class="main__statistics">
+    {% for p in productType %}
+    <div class="product__card card p-20 whiteSquare">
+        <a href="product.html">
+            <div class="card__info pb-20">
+                <div class="card__icon {{ p.className }}">
+                    <svg class="card__svg svg">
+                        <use xlink:href="{{ p.iconName }}"></use>
+                    </svg>
+                </div>
+                <div class="card__text">
+                    <h2 class="card__title">{{ p.title }}</h2>
+                </div>
+            </div>
+            <p class="product__number pt-20">298 млн <br> <span>(тон)</span></p>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% block best %}
+<div class="main__best table p-20 whiteSquare">
+    <h3 class="h3 pb-20">Лучшие производители</h3>
+    <div class="table__title table-2">
+        <p class="table__text tbr tbb">Название</p>
+        <p class="table__text tbb">Рейтинг</p>
+    </div>
+    {% for c in company_list%}
+    <div class="table__info table-2">
+        <div class="company table__text tbr tbb">
+            <div class="company__order default">1</div>
+<!--            <div class="company__logo">-->
+<!--                <img src="{{ profile.log.url }}" alt="{{ c.profile.title }}" class="img">-->
+<!--            </div>-->
+            <div class="company__name"><a href="#">{{ c.username }}</a></div>
+        </div>
+        <div class="company__score table__text tbb">{{ c.profile.mark }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% include 'main/cottonPrice.html' %}
+{% endblock %}
+
+

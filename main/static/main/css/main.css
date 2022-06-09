@@ -215,7 +215,7 @@ a{
     display: flex;
     align-items: center;
     gap: 20px;
-    border-bottom: 2px solid #D2DBEA;
+    /* border-bottom: 2px solid #D2DBEA; */
 }
 .card__svg{
     max-width: 60px;
@@ -229,9 +229,9 @@ a{
     width: 3em;
 }
 .card__title{
-    font-weight: 500;
-    font-size: 34px;
-    line-height: 41px;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
 }
 .card__number, .card__mark{
     font-weight: 500;

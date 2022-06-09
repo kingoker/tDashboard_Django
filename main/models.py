@@ -76,6 +76,7 @@ class OrderTo(models.Model):
 # Виды прдукта
 class ProductType(models.Model):
     title = models.CharField(max_length=50, verbose_name='Тип продукта', db_index=True)
+    className = models.CharField(max_length=50, verbose_name='Класс иконки', null=True, blank=True)
 
     def __str__(self):
         return self.title

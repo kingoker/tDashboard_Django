@@ -1,0 +1,10 @@
+<div class="sitebar__menu menu pt-20 bt">
+   <div class="menu__list df">
+        {% comment %} <a href="{% url 'home' %}" class="menu__item menu__item-active">Продажа</a>
+        <a href="{% url 'buy' %}" class="menu__item">Покупка</a> {% endcomment %}
+        {% for o in order_to %}
+            <a href="{% url 'order' o.id %}" class="menu__item">{{ o.title }}</a> 
+        {% endfor %}
+        <a href="{% url 'rating' %}" class="menu__item">Оценка</a>
+   </div>
+</div>
