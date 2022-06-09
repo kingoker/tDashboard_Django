@@ -3,13 +3,7 @@
 {% block title %}Войти в профиль{% endblock %}
 
 {% block menu %}
-<div class="sitebar__menu menu pt-20 bt">
-   <div class="menu__list df">
-        <a href="{% url 'home' %}" class="menu__item">Продажа</a>
-        <a href="{% url 'buy' %}" class="menu__item">Покупка</a>
-        <a href="{% url 'rating' %}" class="menu__item">Оценка</a>
-   </div>
-</div>
+    {% include 'main/menu.html' %}
 {% endblock %}
 
 
