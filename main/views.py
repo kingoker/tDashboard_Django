@@ -69,6 +69,7 @@ def profile(request):
 
 
 def registration(request):
+    order_to = OrderTo.objects.all()
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -79,12 +80,14 @@ def registration(request):
         form = UserRegisterForm()
 
     data = {
+        'order_to': order_to,
         'form': form,
     }
     return render(request, 'main/registration.html', data)
 
 
 def user_login(request):
+    order_to = OrderTo.objects.all()
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -94,6 +97,7 @@ def user_login(request):
     else:
         form = UserLoginForm()
     data = {
+        'order_to': order_to,
         'form': form,
     }
     return render(request, 'main/login.html', data)
