@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Продажа{% endblock %}
-{% block h1 %} <h1 class="main__header">Общая статистика</h1> {% endblock %}
+{% block title %}{{ order_type.title }}{% endblock %}
+{% block h1 %} <h1 class="main__header">Общая статистика {{ order_type.title }}</h1> {% endblock %}
 
 
 {% block menu %}
@@ -14,17 +14,18 @@
     {% for p in productType %}
     <div class="product__card card p-20 whiteSquare">
         <a href="product.html">
-            <div class="card__info pb-20">
+            <div class="card__info">
                 <div class="card__icon {{ p.className }}">
                     <svg class="card__svg svg">
-                        <use xlink:href="{{ p.iconName }}"></use>
+                        <use xlink:href="#{{ p.className }}"></use>
                     </svg>
                 </div>
                 <div class="card__text">
+                    {{ material_coast.product_much }}
                     <h2 class="card__title">{{ p.title }}</h2>
+                    <p class="product__number pt-20">298 млн <span>(тон)</span></p>
                 </div>
             </div>
-            <p class="product__number pt-20">298 млн <br> <span>(тон)</span></p>
         </a>
     </div>
     {% endfor %}

@@ -67,7 +67,6 @@ class OrderTo(models.Model):
 
     def __str__(self):
         return self.title
-
     class Meta:
         verbose_name = 'Тип ордера'
         verbose_name_plural = 'Типы ордера'
@@ -80,7 +79,6 @@ class ProductType(models.Model):
 
     def __str__(self):
         return self.title
-
     class Meta:
         verbose_name = 'Тип продукта'
         verbose_name_plural = 'Типы продуктов'

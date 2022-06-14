@@ -2,14 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
-from .models import CottonPrice, Product, Rating, OrderTo, ProductType
-from .forms import ProductForm, UserRegisterForm, UserLoginForm, RatingForm
+from .models import *
+from .forms import *
 
 
 def main(request):
     order_to = OrderTo.objects.all()
     cotton = CottonPrice.objects.all()
-    company_list = User.objects.all()
+    company_list = Profile.objects.order_by('-mark')[:10]
     productType = ProductType.objects.all()
     yarn_coast = Product.objects.filter(product_type_id=1)
     material_coast = Product.objects.filter(product_type_id=2)
@@ -28,15 +28,19 @@ def main(request):
 
 def order(request, pk):
     order_to = OrderTo.objects.all()
+    order_type = OrderTo.objects.filter(id=pk)
     cotton = CottonPrice.objects.all()
     company_list = User.objects.all()
     product = Product.objects.filter(order_to_id=pk)
+    productType = ProductType.objects.all()
 
     data = {
         'product': product,
         'cotton': cotton,
         'company_list': company_list,
+        'productType': productType,
         'order_to': order_to,
+        'order_type': order_type,
     }
     return render(request, 'main/order.html', data)
 
