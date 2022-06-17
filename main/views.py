@@ -11,12 +11,14 @@ def main(request):
     cotton = CottonPrice.objects.all()
     company_list = Profile.objects.order_by('-mark')[:10]
     productType = ProductType.objects.all()
-    yarn_coast = Product.objects.filter(product_type_id=1)
+    # yarn_coast = Product.objects.filter(product_type_id=1)
+    yarn_coast2 = Product.objects.aggregate(sum('product_much'))
     material_coast = Product.objects.filter(product_type_id=2)
     tran_coast = Product.objects.filter(product_type_id=3)
     data = {
         'material_coast': material_coast,
-        'yarn_coast': yarn_coast,
+        'yarn_coast2': yarn_coast2,
+        # 'yarn_coast': yarn_coast,
         'productType': productType,
         'cotton': cotton,
         'company_list': company_list,
