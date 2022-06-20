@@ -11,24 +11,53 @@
 
 {% block statistics %}
 <div class="main__statistics">
-    {% for p in productType %}
     <div class="product__card card p-20 whiteSquare">
         <a href="product.html">
             <div class="card__info">
-                <div class="card__icon {{ p.className }}">
+                <div class="card__icon yarn">
                     <svg class="card__svg svg">
-                        <use xlink:href="#{{ p.className }}"></use>
+                        <use xlink:href="#yarn"></use>
                     </svg>
                 </div>
                 <div class="card__text">
-                    {{ material_coast.product_much }}
-                    <h2 class="card__title">{{ p.title }}</h2>
-                    <p class="product__number pt-20">298 млн <span>(тон)</span></p>
+                    <h2 class="card__title">Пряжа</h2>
+                    <p class="product__number pt-20">{% if yarn_coast.product_much__sum == None %}0{% else %}{{ yarn_coast.product_much__sum }}{% endif %}млн <span>(тон)</span></p>
                 </div>
             </div>
         </a>
     </div>
-    {% endfor %}
+
+    <div class="product__card card p-20 whiteSquare">
+        <a href="product.html">
+            <div class="card__info">
+                <div class="card__icon material">
+                    <svg class="card__svg svg">
+                        <use xlink:href="#material"></use>
+                    </svg>
+                </div>
+                <div class="card__text">
+                    <h2 class="card__title">Полотно</h2>
+                    <p class="product__number pt-20">{% if material_coast.product_much__sum == None %}0{% else %}{{ material_coast.product_much__sum }}{% endif %} млн <span>(тон)</span></p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="product__card card p-20 whiteSquare">
+        <a href="product.html">
+            <div class="card__info">
+                <div class="card__icon tkan">
+                    <svg class="card__svg svg">
+                        <use xlink:href="#tkan"></use>
+                    </svg>
+                </div>
+                <div class="card__text">
+                    <h2 class="card__title">Ткань</h2>
+                    <p class="product__number pt-20">{% if tkan_coast.product_much__sum == None %}0{% else %}{{ tkan_coast.product_much__sum }}{% endif %} млн <span>(тон)</span></p>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
 {% endblock %}
 

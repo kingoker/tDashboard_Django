@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
-from django.contrib.auth.models import User
+from django.db.models import Sum
 from .models import *
 from .forms import *
 
@@ -9,23 +9,43 @@ from .forms import *
 def main(request):
     order_to = OrderTo.objects.all()
     cotton = CottonPrice.objects.all()
-    company_list = Profile.objects.order_by('-mark')[:10]
-    productType = ProductType.objects.all()
-    # yarn_coast = Product.objects.filter(product_type_id=1)
-    yarn_coast2 = Product.objects.aggregate(sum('product_much'))
-    material_coast = Product.objects.filter(product_type_id=2)
-    tran_coast = Product.objects.filter(product_type_id=3)
+    company_list = Profile.objects.order_by('-mark')[:5]
+    yarn = Product.objects.filter(product_type_id=1)
+    yarn_coast = yarn.aggregate(Sum('product_much'))
+    material = Product.objects.filter(product_type_id=2)
+    material_coast = material.aggregate(Sum('product_much'))
+    tkan = Product.objects.filter(product_type_id=3)
+    tkan_coast = tkan.aggregate(Sum('product_much'))
+
     data = {
+        'yarn': yarn,
+        'yarn_coast': yarn_coast,
+        'material': material,
         'material_coast': material_coast,
-        'yarn_coast2': yarn_coast2,
-        # 'yarn_coast': yarn_coast,
-        'productType': productType,
+        'tkan': tkan,
+        'tkan_coast': tkan_coast,
         'cotton': cotton,
         'company_list': company_list,
         'order_to': order_to,
     }
 
     return render(request, 'main/main.html', data)
+
+
+def products(request, pk):
+    cotton = CottonPrice.objects.all()
+    order_to = OrderTo.objects.all()
+    product_type = ProductType.objects.get(id=pk)
+    product = Product.objects.filter(product_type_id=pk)
+
+    data = {
+        'product_type': product_type,
+        'cotton': cotton,
+        'order_to': order_to,
+        'product': product,
+    }
+
+    return render(request, 'main/products.html', data)
 
 
 def order(request, pk):
@@ -36,7 +56,20 @@ def order(request, pk):
     product = Product.objects.filter(order_to_id=pk)
     productType = ProductType.objects.all()
 
+    yarn = product.filter(product_type_id=1)
+    yarn_coast = yarn.aggregate(Sum('product_much'))
+    material = product.filter(product_type_id=2)
+    material_coast = material.aggregate(Sum('product_much'))
+    tkan = product.filter(product_type_id=3)
+    tkan_coast = tkan.aggregate(Sum('product_much'))
+
     data = {
+        'yarn': yarn,
+        'yarn_coast': yarn_coast,
+        'material': material,
+        'material_coast': material_coast,
+        'tkan': tkan,
+        'tkan_coast': tkan_coast,
         'product': product,
         'cotton': cotton,
         'company_list': company_list,

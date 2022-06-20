@@ -397,3 +397,9 @@ a{
     grid-template-columns: 2fr 1fr;
     gap: 20px;
 }
+.table__text_sell{
+    background-color: #DAFFDE;
+}
+.table__text_buy{
+    background-color: #FFF7E3;
+}
