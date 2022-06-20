@@ -18,17 +18,17 @@
         <p class="table__text tbb">Количество</p>
     </div>
     {% for p in product %}
-    <div class="table__info table-4">
-        {% if p.order_to == "Продажа" %}
-            <div class="table__text table__text_buy tbr tbb"><a href="#">{{ p.order_to }}</a></div>
-        {% else %}
-<!--            <div class="table__text table__text_buy tbr tbb"><a href="#">{{ p.order_to }}</a></div>-->
-            <div class="table__text table__text_sell tbr tbb"><a href="#">{{ p.order_to }}</a></div>
-        {% endif %}
-        <div class="table__text tbr tbb">{{ p.product_mark }}</div>
-        <div class="table__text tbr tbb">{{ p.product_number }}</div>
-        <div class="table__text tbb">{{ p.product_much }}</div>
-    </div>
+        <div class="table__info table-4">
+            {% if p.order_to == "Продажа" %}
+                <div class="table__text table__text_buy tbr tbb"><a href="#">{{ p.order_to }}</a></div>
+            {% else %}
+    <!--            <div class="table__text table__text_buy tbr tbb"><a href="#">{{ p.order_to }}</a></div>-->
+                <div class="table__text table__text_sell tbr tbb"><a href="#">{{ p.order_to }}</a></div>
+            {% endif %}
+            <div class="table__text tbr tbb">{{ p.product_mark }}</div>
+            <div class="table__text tbr tbb">{{ p.product_number }}</div>
+            <div class="table__text tbb">{{ p.product_much }}</div>
+        </div>
     {% endfor %}
 </div>
 {% include 'main/cottonPrice.html' %}
