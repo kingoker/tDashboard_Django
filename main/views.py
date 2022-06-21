@@ -36,12 +36,12 @@ def products(request, pk):
     cotton = CottonPrice.objects.all()
     order_to = OrderTo.objects.all()
     product_type = ProductType.objects.get(id=pk)
-    product = Product.objects.filter(product_type_id=pk)
+    product = Product.objects.filter(product_type_id=pk).order_by('-pk')
 
     data = {
         'product_type': product_type,
         'cotton': cotton,
-        'order_to': order_to,
+        'order_to': order_to.values(),
         'product': product,
     }
 
@@ -50,7 +50,7 @@ def products(request, pk):
 
 def order(request, pk):
     order_to = OrderTo.objects.all()
-    order_type = OrderTo.objects.filter(id=pk)
+    order_type = OrderTo.objects.get(id=pk)
     cotton = CottonPrice.objects.all()
     company_list = User.objects.all()
     product = Product.objects.filter(order_to_id=pk)
