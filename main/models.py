@@ -24,6 +24,8 @@ class Profile(models.Model):
     title = models.CharField(max_length=100, default='', verbose_name='Название компании')
     mark = models.IntegerField(verbose_name='Оценка', default=0)
     log = models.ImageField(upload_to='logos/', verbose_name='Логотип', null=True, blank=True)
+    adres = models.TextField(verbose_name='Адрес', default='-')
+    phone = models.CharField(max_length=50, verbose_name='Телефон',default='-')
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

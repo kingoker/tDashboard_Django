@@ -12,7 +12,7 @@
 {% block statistics %}
 <div class="main__statistics">
     <div class="product__card card p-20 whiteSquare">
-        <a href="product.html">
+        <a href="{% url 'orderproducts' order_type.pk 1 %}">
             <div class="card__info">
                 <div class="card__icon yarn">
                     <svg class="card__svg svg">
@@ -28,7 +28,7 @@
     </div>
 
     <div class="product__card card p-20 whiteSquare">
-        <a href="product.html">
+        <a href="{% url 'orderproducts' order_type.pk 2 %}">
             <div class="card__info">
                 <div class="card__icon material">
                     <svg class="card__svg svg">
@@ -44,7 +44,7 @@
     </div>
 
     <div class="product__card card p-20 whiteSquare">
-        <a href="product.html">
+        <a href="{% url 'orderproducts' order_type.pk 3 %}">
             <div class="card__info">
                 <div class="card__icon tkan">
                     <svg class="card__svg svg">

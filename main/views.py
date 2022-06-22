@@ -25,11 +25,25 @@ def main(request):
         'tkan': tkan,
         'tkan_coast': tkan_coast,
         'cotton': cotton,
-        'company_list': company_list,
+        'company_list': company_list.values(),
         'order_to': order_to,
     }
 
     return render(request, 'main/main.html', data)
+
+
+def company(request, pk):
+    cotton = CottonPrice.objects.all()
+    order_to = OrderTo.objects.all()
+    company_info = Profile.objects.filter(user_id=pk)
+
+    data = {
+        'company_info': company_info,
+        'cotton': cotton,
+        'order_to': order_to.values(),
+    }
+
+    return render(request, 'main/company.html', data)
 
 
 def products(request, pk):
@@ -64,11 +78,11 @@ def order(request, pk):
     tkan_coast = tkan.aggregate(Sum('product_much'))
 
     data = {
-        'yarn': yarn,
+        'yarn': yarn.values(),
         'yarn_coast': yarn_coast,
         'material': material,
         'material_coast': material_coast,
-        'tkan': tkan,
+        'tkan': tkan.values(),
         'tkan_coast': tkan_coast,
         'product': product,
         'cotton': cotton,
@@ -78,6 +92,20 @@ def order(request, pk):
         'order_type': order_type,
     }
     return render(request, 'main/order.html', data)
+
+
+def orderproducts(request, pk, id):
+    cotton = CottonPrice.objects.all()
+    order_to = OrderTo.objects.all()
+    product = Product.objects.filter(order_to_id=pk).filter(product_type_id=id).order_by('-pk')
+
+    data = {
+        'product': product,
+        'cotton': cotton,
+        'order_to': order_to.values(),
+    }
+
+    return render(request, 'main/orderproducts.html', data)
 
 
 @login_required

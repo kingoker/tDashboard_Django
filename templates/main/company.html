@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Продажа{% endblock %}
+{% block h1 %} <h1 class="main__header">Общая статистика</h1> {% endblock %}
+
+{% block menu %}
+    {% include 'main/menu.html' %}
+{% endblock %}
+
+{% block best %}
+<div class="main__best table p-20 whiteSquare">
+    <h3 class="h3 pb-20">{{ product_type }}</h3>
+    <div class="table__title table-2">
+        <p class="table__text tbr tbb">Ключ</p>
+        <p class="table__text tbb">Значение</p>
+    </div>
+    {% for c in company_info %}
+        <div class="table__info table-2">
+            <div class="table__text tbr tbb">Имя пользователя</div>
+            <div class="table__text tbb">{{ c.user }}</div>
+            <div class="table__text tbr tbb">Название</div>
+            <div class="table__text tbb">{{ c.title }}</div>
+            <div class="table__text tbr tbb">Рейтинг</div>
+            <div class="table__text tbb">{{ c.mark }}</div>
+            <div class="table__text tbr tbb">Адрес</div>
+            <div class="table__text tbb">{{ c.adres }}</div>
+            <div class="table__text tbr tbb">Телефон</div>
+            <div class="table__text tbb">{{ c.phone }}</div>
+        </div>
+    {% endfor %}
+</div>
+
+{% include 'main/cottonPrice.html' %}
+{% endblock %}
