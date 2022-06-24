@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Профиль {% endblock %}
+
+{% block menu %}
+    {% include 'main/menu.html' %}
+{% endblock %}
+
+
+{% block h1 %} <h1 class="main__header">Удалить ордер</h1> {% endblock %}
+
+
+{% block statistics %}
+    <div class="main__middle">
+        <form method="POST" class="main__form form">
+            {% csrf_token %}
+            <button type="submit" class="form__button button clrW">Удалить ордер</button>
+        </form>
+    </div>
+{% endblock %}
+
+
+{% block best %}
+{% endblock %}

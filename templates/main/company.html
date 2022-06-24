@@ -10,14 +10,12 @@
 {% block best %}
 <div class="main__best table p-20 whiteSquare">
     <h3 class="h3 pb-20">{{ product_type }}</h3>
-    <div class="table__title table-2">
-        <p class="table__text tbr tbb">Ключ</p>
-        <p class="table__text tbb">Значение</p>
-    </div>
+<!--    <div class="table__title table-2">-->
+<!--        <p class="table__text tbr tbb">Ключ</p>-->
+<!--        <p class="table__text tbb">Значение</p>-->
+<!--    </div>-->
     {% for c in company_info %}
         <div class="table__info table-2">
-            <div class="table__text tbr tbb">Имя пользователя</div>
-            <div class="table__text tbb">{{ c.user }}</div>
             <div class="table__text tbr tbb">Название</div>
             <div class="table__text tbb">{{ c.title }}</div>
             <div class="table__text tbr tbb">Рейтинг</div>

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from django.db.models import Sum
+from django.views.generic import UpdateView, DeleteView
+
 from .models import *
 from .forms import *
 
@@ -66,7 +68,7 @@ def order(request, pk):
     order_to = OrderTo.objects.all()
     order_type = OrderTo.objects.get(id=pk)
     cotton = CottonPrice.objects.all()
-    company_list = User.objects.all()
+    company_list = Profile.objects.order_by('-mark')[:5]
     product = Product.objects.filter(order_to_id=pk)
     productType = ProductType.objects.all()
 
@@ -133,6 +135,28 @@ def profile(request):
         'form': form,
     }
     return render(request, 'main/profile.html', data)
+
+
+class OrderEdit(UpdateView):
+    model = Product
+    template_name = 'main/order-edit.html'
+
+    fields = ['order_to', 'product_type', 'product_number', 'product_mark', 'product_much', 'text']
+
+
+class ProfileEdit(UpdateView):
+    model = Profile
+    template_name = 'main/profile-edit.html'
+    order_to = OrderTo.objects.all()
+
+    fields = ['title', 'log', 'adres', 'phone']
+
+
+class OrderDelete(DeleteView):
+    model = Product
+    success_url = '/profile'
+    template_name = 'main/order-delete.html'
+    order_to = OrderTo.objects.all()
 
 
 def registration(request):

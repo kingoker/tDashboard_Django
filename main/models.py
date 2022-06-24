@@ -27,6 +27,9 @@ class Profile(models.Model):
     adres = models.TextField(verbose_name='Адрес', default='-')
     phone = models.CharField(max_length=50, verbose_name='Телефон',default='-')
 
+    def get_absolute_url(self):
+        return '/profile'
+
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
@@ -57,6 +60,9 @@ class Product(models.Model):
 
     def __str__(self):
         return str(self.product_type)
+
+    def get_absolute_url(self):
+        return '/profile'
 
     class Meta:
         verbose_name = 'Продукт'

@@ -12,38 +12,29 @@
 
 {% block statistics %}
     <div class="main__middle">
-        <form action="{% url 'profile' %}" method="POST" class="main__form form">
+        <form method="POST" class="main__form form">
             {% csrf_token %}
             <div class="form__group">
-                <label for="{{ form.order_to.id_for_label }}" class="form__label">Ордер на:</label>
-                {{ form.order_to }}
+                <label for="{{ form.title.id_for_label }}" class="form__label">Название компании:</label>
+                {{ form.title }}
             </div>
-            <div class="form__inputs">
-                <div class="form__group">
-                    <label for="{{ form.product_type.id_for_label }}" class="form__label">Продукт:</label>
-                     {{ form.product_type }}
-                </div>
-                <div class="form__group">
-                    <label for="{{ form.product_number.id_for_label }}" class="form__label">Номер продукта</label>
-                    {{ form.product_number }}
-                </div>
-                <div class="form__group">
-                    <label for="{{ form.product_mark.id_for_label }}" class="form__label">Марка продукта</label>
-                    {{ form.product_mark }}
-                </div>
-                <div class="form__group">
-                    <label for="{{ form.product_much.id_for_label }}" class="form__label">Количество (млн.тон)</label>
-                    {{ form.product_much }}
-                </div>
+            <div class="form__group">
+                <label for="{{ form.title.id_for_label }}" class="form__label">Логотип:</label>
+                <input type="file" name="log" accept="image/*" id="id_log">
             </div>
-            <div class="form__textaream">
-                <label for="{{ form.text.id_for_label }}" class="form__label">Примечания</label>
-                {{ form.text }}
+            <div class="form__group">
+                <label for="{{ form.title.id_for_label }}" class="form__label">Адрес:</label>
+                {{ form.adres }}
+            </div>
+            <div class="form__group">
+                <label for="{{ form.title.id_for_label }}" class="form__label">Телефон компании:</label>
+                {{ form.phone }}
             </div>
             <button type="submit" class="form__button button clrW">Отправить</button>
         </form>
         <div>
-            <a href="{% url 'profile-edit' user.profile.id %}" type="submit" class="profile__button form__button button clrW">Редактировать профиль</a>
+            {% include 'main/cottonPrice.html' %}
+            <a href="{% url 'profile-edit' user.id %}" type="submit" class="profile__button form__button button clrW">Редактировать профиль</a>
         </div>
     </div>
 {% endblock %}
@@ -64,7 +55,7 @@
             <div class="company__score table__text tbr tbb">{{ s.product_number }}</div>
             <div class="company__score table__text tbr tbb">{{ s.product_mark }}</div>
             <div class="company__score table__text table__text-div tbb">
-                {{ s.product_much }} 
+                {{ s.product_much }}
                 <div class="table__icons">
                     <a href="{% url 'delete-order' s.id %}">
                         <svg class="trash__icon svg">
@@ -81,7 +72,7 @@
         </div>
         {% endfor %}
     </div>
-    <div></div>
+    <div></div> <!-- Просто загулшка -->
 {% endif %}
 
 {% if buy  %}

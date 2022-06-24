@@ -21,7 +21,7 @@
                 </div>
                 <div class="card__text">
                     <h2 class="card__title">Пряжа</h2>
-                    <p class="product__number pt-20">{% if yarn_coast.product_much__sum == None %}0{% else %}{{ yarn_coast.product_much__sum }}{% endif %}млн <span>(тон)</span></p>
+                    <p class="product__number pt-20">{% if yarn_coast.product_much__sum == None %}0{% else %}{{ yarn_coast.product_much__sum }}{% endif %} <span>(млн. тон)</span></p>
                 </div>
             </div>
         </a>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="card__text">
                     <h2 class="card__title">Полотно</h2>
-                    <p class="product__number pt-20">{% if material_coast.product_much__sum == None %}0{% else %}{{ material_coast.product_much__sum }}{% endif %} млн <span>(тон)</span></p>
+                    <p class="product__number pt-20">{% if material_coast.product_much__sum == None %}0{% else %}{{ material_coast.product_much__sum }}{% endif %}<span>(млн. тон)</span></p>
                 </div>
             </div>
         </a>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="card__text">
                     <h2 class="card__title">Ткань</h2>
-                    <p class="product__number pt-20">{% if tkan_coast.product_much__sum == None %}0{% else %}{{ tkan_coast.product_much__sum }}{% endif %} млн <span>(тон)</span></p>
+                    <p class="product__number pt-20">{% if tkan_coast.product_much__sum == None %}0{% else %}{{ tkan_coast.product_much__sum }}{% endif %}<span>(млн. тон)</span></p>
                 </div>
             </div>
         </a>
@@ -69,16 +69,16 @@
         <p class="table__text tbr tbb">Название</p>
         <p class="table__text tbb">Рейтинг</p>
     </div>
-    {% for c in company_list%}
+    {% for c in company_list %}
     <div class="table__info table-2">
         <div class="company table__text tbr tbb">
             <div class="company__order default">1</div>
 <!--            <div class="company__logo">-->
 <!--                <img src="{{ profile.log.url }}" alt="{{ c.profile.title }}" class="img">-->
 <!--            </div>-->
-            <div class="company__name"><a href="#">{{ c.username }}</a></div>
+            <div class="company__name"><a href="{% url 'company' c.user_id %}">{{ c.title }}</a></div>
         </div>
-        <div class="company__score table__text tbb">{{ c.profile.mark }}</div>
+        <div class="company__score table__text tbb">{{ c.mark }}</div>
     </div>
     {% endfor %}
 </div>

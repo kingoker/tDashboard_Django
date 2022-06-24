@@ -20,9 +20,9 @@
     {% for p in product %}
         <div class="table__info table-4">
             {% if p.order_to.title == 'Продажа' %}
-                <div class="table__text table__text_buy tbr tbb"><a href="{% url 'company' p.author.id %}">{{ p.author }}</a></div>
+                <div class="table__text table__text_buy tbr tbb"><a href="{% url 'company' p.author.id %}">{{ p.author.profile.title }}</a></div>
             {% else %}
-                <div class="table__text table__text_sell tbr tbb"><a href="{% url 'company' p.author.id %}">{{ p.author }}</a></div>
+                <div class="table__text table__text_sell tbr tbb"><a href="{% url 'company' p.author.id %}">{{ p.author.profile.title }}</a></div>
             {% endif %}
             <div class="table__text tbr tbb">{{ p.product_mark }}</div>
             <div class="table__text tbr tbb">{{ p.product_number }}</div>

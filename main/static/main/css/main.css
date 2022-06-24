@@ -126,7 +126,8 @@ a{
 
 /* Боковая панель */
 .sitebar{
-    width: 20%;
+    position: fixed;
+    width: 15%;
     height: 100vh;
 }
 .sitebar__container{
@@ -167,8 +168,10 @@ a{
 
 /* Главная часть сайта */
 .main{
+    margin-left: 15%;
     background-color: #F2F2F7;
     width: 100%;
+    min-height: 100vh;
 }
 .main__top{
     width: 100%;
@@ -196,6 +199,18 @@ a{
     left: 13px;
     width: 18px;
     height: 18px;
+}
+.trash__icon, .edit__icon{
+    fill: #D2DBEA;
+    width: 18px;
+    height: 18px;
+    transition: fill 0.5s ease;
+}
+.trash__icon:hover{
+    fill: #FD8F6F;
+}
+.edit__icon:hover{
+    fill: #128CDB;
 }
 .main__statistics{
     display: grid;
@@ -254,7 +269,6 @@ a{
 .product__number{
     font-weight: 500;
     font-size: 36px;
-    text-align: center;
     color: #404040;
     line-height: 30px;
 }
@@ -288,6 +302,10 @@ a{
     font-weight: 400;
     font-size: 24px;
     line-height: 29px;
+}
+.table__text-div{
+    display: flex;
+    justify-content: space-between;
 }
 .table__text span{
     font-weight: 400;
@@ -384,6 +402,9 @@ a{
     line-height: 22px;
     margin-bottom: 10px;
 }
+.profile__button{
+    margin-top: 30px;
+}
 .registration{
     display: grid;
     justify-content: center;
@@ -402,4 +423,170 @@ a{
 }
 .table__text_buy{
     background-color: #FFF7E3;
+}
+.menu__icon{
+    display: none;
+}
+.lock{
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+/* Адаптивность */
+/* Адаптивность сайта */
+@media (min-width: 1500px){
+
+}
+@media (min-width: 1200px) {
+
+}
+@media (max-width: 1199px){
+    .sitebar{
+        width: 20%;
+    }
+    .main{
+        margin-left: 20%;
+    }
+    .main__middle {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 20px;
+    }
+    .main__bottom {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 20px;
+    }
+    .main__statistics {
+        gap: 10px;
+    }
+    .product__number {
+        line-height: 20px;
+    }
+    .form__inputs {
+        grid-template-columns: 1fr 1fr;
+    }
+    .card__info {
+        gap: 10px;
+    }
+    .input{
+        padding: 10px;
+    }
+    .search{
+        padding: 20px 20px 20px 40px;
+    }
+}
+@media (max-width: 991px){
+    .form__inputs {
+        grid-template-columns: 1fr;
+    }
+    .form__label {
+        margin-bottom: 0px;
+    }
+    .main__middle {
+        grid-template-columns: 2fr 1fr;
+        gap: 10px;
+    }
+    .main__bottom {
+        display: flex;
+        flex-direction: column;
+    }
+    .main {
+        margin-left: 0%;
+    }
+
+    /* Адаптивное меню */
+    .menu__icon{
+        display: block;
+        z-index: 9999;
+        position: relative;
+        min-width: 50px;
+        height: 35px;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+    .menu__icon span,
+    .menu__icon::before,
+    .menu__icon::after{
+        position: absolute;
+        right: 0;
+        height: 15%;
+        width: 100%;
+        transition: all 0.4s ease 0s;
+        background-color: #128CDB;
+    }
+    .menu__icon::before,
+    .menu__icon::after{
+        content: "";
+    }
+    .menu__icon::before{
+        top: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .menu__icon::after{
+        bottom: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .menu__icon span{
+        top: 50%;
+        transform: scale(1) translate(0px, -50%);
+    }
+    .menu__icon.active span{
+        transform: scale(0) translate(0px, -50%);
+    }
+    .menu__icon.active::before{
+        top: 50%;
+        transform: rotate(-45deg) translate(0px, -50%);
+    }
+    .menu__icon.active::after{
+        bottom: 50%;
+        transform: rotate(45deg) translate(0px, 50%);
+    }
+    .sitebar{
+        background-color: #fff;
+        z-index: 999;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        transition: all 0.3s ease 0s;
+    }
+    .sitebar__container{
+        width: 50%;
+    }
+    .sitebar.active{
+        right: 0%;
+    }
+    .header__list{
+        margin-top: 30px;
+        flex-direction: column;
+    }
+}
+@media (max-width: 859px){
+    
+}
+@media (max-width: 767px){
+    .main__statistics {
+        grid-template-columns: 1fr;
+    }
+    .search, .main__search {
+        width: 80%;
+    }
+}
+@media (max-width: 560px){
+    .search, .search__icon{
+        display: none;
+    }
+}
+@media (max-width: 480px){
+
 }
